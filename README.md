@@ -5,8 +5,6 @@ This project is a **Software-In-The-Loop (SITL)** simulation of a drone altitude
 
 The simulation demonstrates how a discrete-time control algorithm can manage the complex physics of vertical flight, including gravity compensation and motor saturation.
 
-[Image of PID control system block diagram with feedback loop]
-
 ## Technical Architecture
 The system follows strict **Separation of Concerns (SoC)** by isolating physics from logic:
 1.  **Drone Simulator (`Drone` class):** Models vertical flight physics using Euler integration. It accounts for gravity ($9.81 m/s^2$), motor thrust acceleration ($20.0 m/s^2$ max), and enforces ground-level collision boundaries ($0m$).
@@ -26,7 +24,7 @@ This project was developed under the constraints of safety-critical embedded sys
 * **Integral (I) with Anti-Windup:** Eliminates steady-state error. Includes **Anti-Windup Clamping** to prevent the integral term from growing to infinity while the drone is on the ground.
 * **Derivative (D) with Initialization Protection:** Calculates the rate of climb to prevent overshoot. Logic was implemented to baseline the `previous_error_` to prevent "Tick 0" thrust spikes.
 
-[Image of PID controller response curves: P, PI, and PID]
+![telemetry_graph](/telemetry_graph.png)
 
 ### 2. Physics Simulation
 The simulator uses discrete-time integration every $10ms$ ($dt = 0.01$):
@@ -40,5 +38,6 @@ To mimic an aerospace production environment, compile with strict safety flags:
 ```bash
 g++ -std=c++11 -Wall -Wextra -Werror -fno-exceptions -fno-rtti \
     main.cpp altitude_controller.cpp drone_simulator.cpp -o drone_sim
-
-    
+```
+# TODO: Add image to Readme
+- Generate graph with python later

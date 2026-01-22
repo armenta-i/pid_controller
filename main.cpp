@@ -16,8 +16,8 @@ int main() {
      AltitudeController(0.15f, 0.05f, 0.1f);
 
     float32_t curr_altitude;
-    float32_t curr_velocity;
-    float32_t curr_error;
+    // float32_t curr_velocity;
+    // float32_t curr_error;
     float32_t output_thrust;
 
     for (int32_t i = 0; i < 10000; i++) {
@@ -27,14 +27,10 @@ int main() {
 
         // Get updated values
         curr_altitude = new_drone.getAltitude();
-        curr_velocity = new_drone.getVelocity();
-        curr_error = altitude_controller.getError();
+        // curr_velocity = new_drone.getVelocity();
+        // curr_error = altitude_controller.getError();
 
-        // Print information
-        std::cout << "Tick: " << i << " | "
-        << "Alt: " << curr_altitude << " | "
-        << "Vel: " << curr_velocity << " | "
-        << "Thrust: " << output_thrust << " | "
-        << "Error: " <<  curr_error << " | " <<
-        std::endl;    }
+        // Printing in CSV format
+        std::cout << i * DELTA_TIME << "," << curr_altitude << "," << output_thrust << std::endl;
+    }
 }
