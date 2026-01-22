@@ -39,5 +39,3 @@ To mimic an aerospace production environment, compile with strict safety flags:
 g++ -std=c++11 -Wall -Wextra -Werror -fno-exceptions -fno-rtti \
     main.cpp altitude_controller.cpp drone_simulator.cpp -o drone_sim
 ```
-# TODO: Add image to Readme
-- Generate graph with python later
